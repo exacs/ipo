@@ -2,7 +2,7 @@ defmodule Ipo.Participant do
   use Ipo.Web, :model
 
   schema "participants" do
-    field :position, :integer
+    field :position, :integer, default: 0
     belongs_to :tournament, Ipo.Tournament
     belongs_to :team, Ipo.Team
 
@@ -14,7 +14,7 @@ defmodule Ipo.Participant do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:position])
-    |> validate_required([:position])
+    |> cast(params, [:position, :tournament_id, :team_id])
+    |> validate_required([:tournament_id, :team_id])
   end
 end

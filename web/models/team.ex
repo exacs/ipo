@@ -5,6 +5,8 @@ defmodule Ipo.Team do
     field :name, :string
     has_many :players, Ipo.Player
 
+    many_to_many :tournaments, Ipo.Tournament, join_through: Ipo.Participant
+
     timestamps()
   end
 

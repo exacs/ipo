@@ -1,0 +1,8 @@
+<h3>Teams of this tournament</h3>
+<ul>
+  <%= for team <- @tournament.teams do %>
+    <li><%= team.name %> <%= link "Edit", to: team_path(@conn, :edit, team) %></li>
+  <% end %>
+</ul>
+
+<%= link "Add team", to: tournament_participant_path(@conn, :teams_new, @tournament) %>

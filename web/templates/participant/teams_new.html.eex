@@ -1,0 +1,6 @@
+<h2>New team</h2>
+
+<%= render "teams_form.html", changeset: @changeset,
+    action: tournament_participant_path(@conn, :teams_create, @tournament) %>
+
+<%= link "Back", to: team_path(@conn, :index) %>
