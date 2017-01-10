@@ -19,7 +19,9 @@ defmodule Ipo.Router do
     get "/", PageController, :index
 
     resources "/players", PlayerController
-    resources "/teams", TeamController
+    resources "/teams", TeamController do
+      resources "/players", PlayerController, only: [:new, :create, :edit, :update]
+    end
   end
 
   # Other scopes may use custom stacks.
