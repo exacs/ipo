@@ -7,6 +7,11 @@
     <%= @player.name %>
   </li>
 
+  <li>
+    <strong>Team ID:</strong>
+    <%= @player.team_id %>
+  </li>
+
 </ul>
 
 <%= link "Edit", to: player_path(@conn, :edit, @player) %>
