@@ -9,5 +9,12 @@
 
 </ul>
 
+<h3>Players of this team</h3>
+<ul>
+  <%= for player <- @team.players do %>
+    <li><%= player.name %></li>
+  <% end %>
+</ul>
+
 <%= link "Edit", to: team_path(@conn, :edit, @team) %>
 <%= link "Back", to: team_path(@conn, :index) %>

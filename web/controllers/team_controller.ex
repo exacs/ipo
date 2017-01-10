@@ -27,7 +27,7 @@ defmodule Ipo.TeamController do
   end
 
   def show(conn, %{"id" => id}) do
-    team = Repo.get!(Team, id)
+    team = Repo.get!(Team, id) |> Repo.preload([:players])
     render(conn, "show.html", team: team)
   end
 
