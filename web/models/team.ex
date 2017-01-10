@@ -3,7 +3,7 @@ defmodule Ipo.Team do
 
   schema "teams" do
     field :name, :string
-    has_many :player, Ipo.Player
+    has_many :players, Ipo.Player
 
     timestamps()
   end
