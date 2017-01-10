@@ -3,6 +3,7 @@ defmodule Ipo.Player do
 
   schema "players" do
     field :name, :string
+    belongs_to :team, Ipo.Team
 
     timestamps()
   end
@@ -12,7 +13,7 @@ defmodule Ipo.Player do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:name])
-    |> validate_required([:name])
+    |> cast(params, [:name, :team_id])
+    |> validate_required([:name, :team_id])
   end
 end
