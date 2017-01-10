@@ -22,6 +22,8 @@ defmodule Ipo.Router do
     resources "/teams", TeamController do
       resources "/players", PlayerController, only: [:new, :create, :edit, :update]
     end
+
+    resources "/tournaments", TournamentController
   end
 
   # Other scopes may use custom stacks.

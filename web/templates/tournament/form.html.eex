@@ -1,0 +1,59 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <%= if @changeset.action do %>
+    <div class="alert alert-danger">
+      <p>Oops, something went wrong! Please check the errors below.</p>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= label f, :name, class: "control-label" %>
+    <%= text_input f, :name, class: "form-control" %>
+    <%= error_tag f, :name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :venue, class: "control-label" %>
+    <%= text_input f, :venue, class: "form-control" %>
+    <%= error_tag f, :venue %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :date, class: "control-label" %>
+    <%= date_select f, :date, class: "form-control" %>
+    <%= error_tag f, :date %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :official, class: "control-label" %>
+    <%= checkbox f, :official, class: "form-control" %>
+    <%= error_tag f, :official %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :sets, class: "control-label" %>
+    <%= number_input f, :sets, class: "form-control" %>
+    <%= error_tag f, :sets %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :points, class: "control-label" %>
+    <%= number_input f, :points, class: "form-control" %>
+    <%= error_tag f, :points %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :last_set, class: "control-label" %>
+    <%= number_input f, :last_set, class: "form-control" %>
+    <%= error_tag f, :last_set %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :timeouts, class: "control-label" %>
+    <%= number_input f, :timeouts, class: "form-control" %>
+    <%= error_tag f, :timeouts %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>

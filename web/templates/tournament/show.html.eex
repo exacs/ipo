@@ -1,0 +1,48 @@
+<h2>Show tournament</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @tournament.name %>
+  </li>
+
+  <li>
+    <strong>Venue:</strong>
+    <%= @tournament.venue %>
+  </li>
+
+  <li>
+    <strong>Date:</strong>
+    <%= @tournament.date %>
+  </li>
+
+  <li>
+    <strong>Official:</strong>
+    <%= @tournament.official %>
+  </li>
+
+  <li>
+    <strong>Sets:</strong>
+    <%= @tournament.sets %>
+  </li>
+
+  <li>
+    <strong>Points:</strong>
+    <%= @tournament.points %>
+  </li>
+
+  <li>
+    <strong>Last set:</strong>
+    <%= @tournament.last_set %>
+  </li>
+
+  <li>
+    <strong>Timeouts:</strong>
+    <%= @tournament.timeouts %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: tournament_path(@conn, :edit, @tournament) %>
+<%= link "Back", to: tournament_path(@conn, :index) %>
