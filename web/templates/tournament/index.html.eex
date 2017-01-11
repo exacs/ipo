@@ -1,40 +1,55 @@
-<h2>Listing tournaments</h2>
+<div class="container mb-3">
+  <h2>Torneos</h2>
+</div>
 
-<table class="table">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Venue</th>
-      <th>Date</th>
-      <th>Official</th>
-      <th>Sets</th>
-      <th>Points</th>
-      <th>Last set</th>
-      <th>Timeouts</th>
+<div class="nav-tabs">
+  <div class="container">
+    <ul class="nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link active" href="/tournaments">Todos los torneos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-<%= for tournament <- @tournaments do %>
-    <tr>
-      <td><%= tournament.name %></td>
-      <td><%= tournament.venue %></td>
-      <td><%= tournament.date %></td>
-      <td><%= tournament.official %></td>
-      <td><%= tournament.sets %></td>
-      <td><%= tournament.points %></td>
-      <td><%= tournament.last_set %></td>
-      <td><%= tournament.timeouts %></td>
-
-      <td class="text-right">
-        <%= link "Show", to: tournament_path(@conn, :show, tournament), class: "btn btn-default btn-xs" %>
-        <%= link "Edit", to: tournament_path(@conn, :edit, tournament), class: "btn btn-default btn-xs" %>
-        <%= link "Delete", to: tournament_path(@conn, :delete, tournament), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
-      </td>
-    </tr>
-<% end %>
-  </tbody>
-</table>
-
-<%= link "New tournament", to: tournament_path(@conn, :new) %>
+<div class="container my-3">
+  <h1 class="clearfix">
+    <div class="float-right">
+      <%=
+      link "Crear torneo",
+      to: tournament_path(@conn, :new),
+      class: 'btn btn-primary'
+      %>
+    </div>
+  </h1>
+  <br><br>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Nombre</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= for tournament <- @tournaments do %>
+        <tr>
+          <td><%= tournament.date %></td>
+          <td>
+            <div class="tournament-list-title">
+              <a href="/tournaments/<%= tournament.id %>">
+                <%= tournament.name %>
+              </a>
+              <span class="badge badge-primary">Oficial</span>
+            </div>
+            <p class="text-muted">
+              17 equipos
+            </p>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

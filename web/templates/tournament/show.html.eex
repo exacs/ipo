@@ -1,48 +1,81 @@
-<h2>Show tournament</h2>
+<div class="container mb-3">
+  <h2>Torneos</h2>
+</div>
 
-<ul>
+<div class="nav-tabs">
+  <div class="container">
+    <ul class="nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments">Todos los torneos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-  <li>
-    <strong>Name:</strong>
-    <%= @tournament.name %>
-  </li>
+<div class="container my-3">
+  <h1 class="clearfix">
+    <span><%= @tournament.name %></span>
+    <div class="float-right">
+      <%=
+      link "Editar",
+      to: tournament_path(@conn, :edit, @tournament),
+      class: 'btn btn-secondary'
+      %>
+      <%=
+      link "Crear torneo",
+      to: tournament_path(@conn, :new),
+      class: 'btn btn-primary'
+      %>
+    </div>
+  </h1>
 
-  <li>
-    <strong>Venue:</strong>
-    <%= @tournament.venue %>
-  </li>
+  <section>
+    <ul class="list-unstyled">
+      <li>
+        <i class="material-icons">place</i>
+        <span><%= @tournament.venue %></span>
+      </li>
+      <li>
+        <i class="material-icons">today</i>
+        <span><%= @tournament.date %></span>
+      </li>
+    </ul>
+  </section>
 
-  <li>
-    <strong>Date:</strong>
-    <%= @tournament.date %>
-  </li>
+  <br><hr><br>
 
-  <li>
-    <strong>Official:</strong>
-    <%= @tournament.official %>
-  </li>
+  <section>
+    <h3 class="clearfix">
+      <span>Equipos participantes</span>
+      <div class="float-right">
+        <%=
+        link "Emparejamientos",
+        to: tournament_participant_path(@conn, :teams_new, @tournament),
+        class: 'btn btn-secondary btn-sm'
+        %>
+        <%=
+        link "Añadir equipo",
+        to: tournament_participant_path(@conn, :teams_new, @tournament),
+        class: 'btn btn-primary btn-sm'
+        %>
+      </div>
+    </h3>
+    <table class="table">
+      <tbody>
+        <%= for team <- @tournament.teams do %>
+          <tr>
+            <td><%= team.name %></td>
+            <td class="text-right">
+              <%= link "Editar", to: team_path(@conn, :edit, team) %>
+              <%= button "Borrar", to: team_path(@conn, :delete, team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-sm" %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
 
-  <li>
-    <strong>Sets:</strong>
-    <%= @tournament.sets %>
-  </li>
-
-  <li>
-    <strong>Points:</strong>
-    <%= @tournament.points %>
-  </li>
-
-  <li>
-    <strong>Last set:</strong>
-    <%= @tournament.last_set %>
-  </li>
-
-  <li>
-    <strong>Timeouts:</strong>
-    <%= @tournament.timeouts %>
-  </li>
-
-</ul>
-
-<%= link "Edit", to: tournament_path(@conn, :edit, @tournament) %>
-<%= link "Back", to: tournament_path(@conn, :index) %>
+  </section>
+</div>
