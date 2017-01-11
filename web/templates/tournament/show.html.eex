@@ -65,12 +65,18 @@
     </h3>
     <table class="table">
       <tbody>
-        <%= for team <- @tournament.teams do %>
+        <%= for participant <- @participants do %>
           <tr>
-            <td><%= team.name %></td>
+            <td><%= participant.team.name %></td>
             <td class="text-right">
-              <%= link "Editar", to: team_path(@conn, :edit, team) %>
-              <%= button "Borrar", to: team_path(@conn, :delete, team), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-sm" %>
+              <%= link "Editar", to: team_path(@conn, :edit, participant.team) %>
+              <%=
+              button "Borrar",
+              to: tournament_participant_path(@conn, :delete, @tournament, participant),
+              method: :delete,
+              data: [confirm: "Are you sure?"],
+              class: "btn btn-danger btn-sm"
+              %>
             </td>
           </tr>
         <% end %>

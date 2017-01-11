@@ -11,6 +11,7 @@ defmodule Ipo.Tournament do
     field :last_set, :integer
     field :timeouts, :integer
 
+    has_many :participants, Ipo.Participant
     many_to_many :teams, Ipo.Team, join_through: Ipo.Participant
 
     timestamps()
