@@ -28,6 +28,7 @@ defmodule Ipo.Router do
       get "/teams/new", ParticipantController, :teams_new
       post "/teams/", ParticipantController, :teams_create
       get "/matches", ParticipantController, :matches_index
+      resources "/teams", ParticipantController, only: [:delete]
     end
   end
 
