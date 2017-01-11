@@ -1,0 +1,56 @@
+<div class="container mb-3">
+  <h2>Torneos</h2>
+</div>
+
+<div class="nav-tabs">
+  <div class="container">
+    <ul class="nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments">Todos los torneos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container my-3">
+  <h1 class="clearfix">
+    <span><%= @tournament.name %></span>
+  </h1>
+
+  <section>
+    <h3 class="clearfix">
+      <span>Emparejamientos</span>
+      <div class="float-right">
+        <%=
+        link "Emparejamientos",
+        to: tournament_participant_path(@conn, :matches_index, @tournament),
+        class: 'btn btn-secondary btn-sm'
+        %>
+        <%=
+        link "Añadir equipo",
+        to: tournament_participant_path(@conn, :teams_new, @tournament),
+        class: 'btn btn-primary btn-sm'
+        %>
+      </div>
+    </h3>
+    <table class="table">
+      <%= form_for @changeset, tournament_participant_path(@conn, :teams_index, @tournament), fn f -> %>
+      <tbody>
+        <%= for position <- @positions do %>
+          <tr>
+            <td>
+              <%= position %>
+            </td>
+            <td>
+              <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <% end %>
+  </section>
+</div>

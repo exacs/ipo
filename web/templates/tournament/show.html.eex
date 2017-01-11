@@ -53,7 +53,7 @@
       <div class="float-right">
         <%=
         link "Emparejamientos",
-        to: tournament_participant_path(@conn, :teams_new, @tournament),
+        to: tournament_participant_path(@conn, :matches_index, @tournament),
         class: 'btn btn-secondary btn-sm'
         %>
         <%=
