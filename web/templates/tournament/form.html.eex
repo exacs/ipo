@@ -1,4 +1,5 @@
 <%= form_for @changeset, @action, fn f -> %>
+<div style="max-width: 560px">
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -6,54 +7,89 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :name, class: "control-label" %>
+    <%= label f, :name, class: "control-label" do "Nombre" end %>
     <%= text_input f, :name, class: "form-control" %>
     <%= error_tag f, :name %>
   </div>
 
   <div class="form-group">
-    <%= label f, :venue, class: "control-label" %>
+    <%= label f, :venue, class: "control-label" do "Lugar" end %>
     <%= text_input f, :venue, class: "form-control" %>
     <%= error_tag f, :venue %>
   </div>
 
   <div class="form-group">
-    <%= label f, :date, class: "control-label" %>
-    <%= date_select f, :date, class: "form-control" %>
+    <%= label f, :date, class: "control-label" do "Fecha" end %>
+    <input type="date"
+      name="<%= input_name f, :date %>"
+      id="<%= input_id f, :date %>"
+      class="form-control"
+      value="<%= input_value f, :date %>" >
     <%= error_tag f, :date %>
   </div>
 
   <div class="form-group">
-    <%= label f, :official, class: "control-label" %>
+    <%= label f, :official, class: "control-label" do "¿Es un partido oficial?" end %>
     <%= checkbox f, :official, class: "form-control" %>
     <%= error_tag f, :official %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :sets, class: "control-label" %>
-    <%= number_input f, :sets, class: "form-control" %>
-    <%= error_tag f, :sets %>
+  <div>Número de sets</div>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+      <%= radio_button f, :sets, 1, class: "form-check-input" %> 1
+    </label>
   </div>
 
-  <div class="form-group">
-    <%= label f, :points, class: "control-label" %>
-    <%= number_input f, :points, class: "form-control" %>
-    <%= error_tag f, :points %>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+      <%= radio_button f, :sets, 3, class: "form-check-input" %> 3
+    </label>
   </div>
 
-  <div class="form-group">
-    <%= label f, :last_set, class: "control-label" %>
-    <%= number_input f, :last_set, class: "form-control" %>
-    <%= error_tag f, :last_set %>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+      <%= radio_button f, :sets, 5, class: "form-check-input" %> 5
+    </label>
   </div>
 
-  <div class="form-group">
-    <%= label f, :timeouts, class: "control-label" %>
-    <%= number_input f, :timeouts, class: "form-control" %>
-    <%= error_tag f, :timeouts %>
+  <div class="form-check form-check-inline">
+    <label class="form-check-label">
+      <%= radio_button f, :sets, 7, class: "form-check-input" %> 7
+    </label>
+  </div>
+
+  <%= error_tag f, :sets %>
+
+
+  <div class="row">
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= label f, :points, class: "control-label" do "Puntos" end %>
+        <%= number_input f, :points, class: "form-control" %>
+        <%= error_tag f, :points %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= label f, :last_set, class: "control-label" do "Puntos último set" end %>
+        <%= number_input f, :last_set, class: "form-control" %>
+        <%= error_tag f, :last_set %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <%= label f, :timeouts, class: "control-label" do "Tiempos muertos" end %>
+        <%= number_input f, :timeouts, class: "form-control" %>
+        <%= error_tag f, :timeouts %>
+      </div>
+    </div>
   </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
+</div>
 <% end %>

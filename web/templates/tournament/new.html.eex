@@ -1,6 +1,26 @@
-<h2>New tournament</h2>
+<div class="container mb-3">
+  <h2>Torneos</h2>
+</div>
 
-<%= render "form.html", changeset: @changeset,
-                        action: tournament_path(@conn, :create) %>
+<div class="nav-tabs">
+  <div class="container">
+    <ul class="nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments">Todos los torneos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
+      </li>
+    </ul>
+  </div>
+</div>
 
-<%= link "Back", to: tournament_path(@conn, :index) %>
+<div class="container my-3">
+  <h1>Nuevo torneo</h1>
+
+  <%=
+  render "form.html",
+  changeset: @changeset,
+  action: tournament_path(@conn, :create)
+  %>
+</div>
