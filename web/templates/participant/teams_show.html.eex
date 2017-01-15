@@ -1,0 +1,41 @@
+<div class="container mb-3">
+  <h2>Torneos</h2>
+</div>
+
+<div class="nav-tabs">
+  <div class="container">
+    <ul class="nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments">Todos los torneos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="container my-3">
+  <section>
+    <h3 class="clearfix">
+      <span><%= @team.name %></span>
+      <div class="float-right">
+        <%=
+        link "Editar",
+        to: tournament_path(@conn, :edit, @tournament),
+        class: 'btn btn-secondary'
+        %>
+        <%=
+        link "Añadir jugador",
+        to: tournament_path(@conn, :new),
+        class: 'btn btn-primary'
+        %>
+      </div>
+    </h3>
+    <ul>
+      <%= for player <- @team.players do %>
+        <li><%= player.name %> <%= link "Edit", to: team_player_path(@conn, :edit, @team, player) %></li>
+      <% end %>
+    </ul>
+  </section>
+</div>
