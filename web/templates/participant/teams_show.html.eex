@@ -1,28 +1,19 @@
-<div class="container mb-3">
-  <h2>Torneos</h2>
-</div>
-
-<div class="nav-tabs">
-  <div class="container">
-    <ul class="nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/tournaments">Todos los torneos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
 <div class="container my-3">
+  <div>
+    <%= link to: tournament_path(@conn, :show, @tournament) do %>
+      <i class="material-icons">arrow back</i> <%= @tournament.name %>
+    <% end %>
+  </div>
+
+  <br><br>
+
   <section>
-    <h3 class="clearfix">
+    <h1 class="clearfix">
       <span><%= @team.name %></span>
       <div class="float-right">
         <%=
         link "Editar",
-        to: tournament_path(@conn, :edit, @tournament),
+        to: tournament_participant_path(@conn, :edit, @tournament, @team),
         class: 'btn btn-secondary'
         %>
         <%=
@@ -31,17 +22,19 @@
         class: 'btn btn-primary'
         %>
       </div>
-    </h3>
-    <ul>
-      <%= for player <- @team.players do %>
-        <li>
-          <%= player.name %>
-          <%=
-          link "Edit",
-          to: tournament_participant_playerr_path(@conn, :edit, @tournament, @team, player)
-          %>
-        </li>
-      <% end %>
-    </ul>
+    </h1>
+    <table class="table">
+      <tbody>
+        <%= for player <- @team.players do %>
+          <tr>
+            <td>
+              <%= link to: tournament_participant_playerr_path(
+                @conn, :edit, @tournament, @team, player
+              ) do player.name end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
   </section>
 </div>

@@ -1,42 +1,14 @@
-<div class="container mb-3">
-  <h2>Torneos</h2>
-</div>
-
-<div class="nav-tabs">
-  <div class="container">
-    <ul class="nav mr-auto">
-      <li class="nav-item">
-        <a class="nav-link" href="/tournaments">Todos los torneos</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="/tournaments?author=me">Creados por mí</a>
-      </li>
-    </ul>
-  </div>
-</div>
-
 <div class="container my-3">
-  <h1 class="clearfix">
-    <span><%= @tournament.name %></span>
-    <div class="float-right">
-      <%=
-      link "Editar",
-      to: tournament_path(@conn, :edit, @tournament),
-      class: 'btn btn-secondary'
-      %>
-      <%=
-      link "Crear torneo",
-      to: tournament_path(@conn, :new),
-      class: 'btn btn-primary'
-      %>
-    </div>
-  </h1>
+  <div>
+    <%= link to: tournament_path(@conn, :show, @tournament) do %>
+    <i class="material-icons">arrow back</i> <%= @tournament.name %>
+    <% end %>
+  </div>
 
-  <br><hr><br>
+  <br><br>
 
-  <h2>Nuevo equipo</h2>
+  <h1>Nuevo equipo</h1>
   <%= render "teams_form.html", changeset: @changeset,
   action: tournament_participant_path(@conn, :create, @tournament) %>
-  <%= link "Back", to: tournament_path(@conn, :show, @tournament) %>
 
 </div>
