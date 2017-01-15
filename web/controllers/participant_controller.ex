@@ -3,6 +3,7 @@ defmodule Ipo.ParticipantController do
 
   alias Ipo.Tournament
   alias Ipo.Participant
+  alias Ipo.Team
 
   def teams_index(conn, %{"tournament_id" => tournament_id}) do
     tournament = Repo.get!(Tournament, tournament_id) |> Repo.preload([:teams])
@@ -12,12 +13,38 @@ defmodule Ipo.ParticipantController do
 
   def teams_new(conn, %{"tournament_id" => tournament_id}) do
     tournament = Repo.get!(Tournament, tournament_id)
-    changeset = Participant.changeset(%Participant{})
+    changeset = Team.changeset(%Team{})
 
     render(conn, "teams_new.html", changeset: changeset, tournament: tournament)
   end
 
-  def teams_create(conn, %{"tournament_id" => tournament_id, "participant" => participant_params}) do
+  # Perform two insertions:
+  # - Create a new team
+  # - Create a new participant
+  def teams_create(conn, %{"tournament_id" => tournament_id, "team" => params}) do
+    tournament = Repo.get!(Tournament, tournament_id)
+    team_params = Map.put(params, "tournament_id", tournament_id)
+    team_changeset = Team.changeset(%Team{}, team_params)
+
+    case Repo.insert(team_changeset) do
+      {:ok, team} ->
+        participant_params = %{"tournament_id" => tournament_id,
+                               "team_id" => team.id}
+        participant_changeset = Participant.changeset(%Participant{}, participant_params)
+
+        case Repo.insert(participant_changeset) do
+          {:ok, _} ->
+            conn
+            |> put_flash(:info, "Equipo añadido")
+            |> redirect(to: tournament_path(conn, :show, tournament))
+        end
+      {:error, _} ->
+        render(conn, "teams_new.html", changeset: team_changeset, tournament: tournament)
+    end
+  end
+
+
+  def teams_create_old(conn, %{"tournament_id" => tournament_id, "participant" => participant_params}) do
     tournament = Repo.get!(Tournament, tournament_id)
     params = Map.put(participant_params, "tournament_id", tournament_id)
     changeset = Participant.changeset(%Participant{}, params)
