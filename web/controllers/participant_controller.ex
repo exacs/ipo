@@ -43,6 +43,10 @@ defmodule Ipo.ParticipantController do
     end
   end
 
+  def teams_show(conn, %{"tournament_id" => tournament_id, "team_id" => team_id}) do
+
+  end
+
   def matches_index(conn, %{"tournament_id" => tournament_id}) do
     tournament = Repo.get!(Tournament, tournament_id)
     |> Repo.preload([:participants])

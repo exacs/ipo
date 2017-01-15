@@ -67,9 +67,12 @@
       <tbody>
         <%= for participant <- @participants do %>
           <tr>
-            <td><%= participant.team.name %></td>
+            <td>
+              <a href="/tournaments/<%= @tournament.id %>/teams/<%= participant.team.id %>">
+                <%= participant.team.name %>
+              </a>
+            </td>
             <td class="text-right">
-              <%= link "Editar", to: team_path(@conn, :edit, participant.team) %>
               <%=
               button "Borrar",
               to: tournament_participant_path(@conn, :delete, @tournament, participant),
