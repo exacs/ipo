@@ -24,7 +24,10 @@ defmodule Ipo.Router do
     end
 
     resources "/tournaments", TournamentController do
-      resources "/teams", ParticipantController, only: [:index, :show, :new, :create, :delete]
+      resources "/teams", ParticipantController, only: [:index, :show, :new, :create, :delete] do
+        resources "/players", PlayerrController, only: [:new, :create, :edit, :update, :delete]
+      end
+
       get "/matches", ParticipantController, :matches_index
     end
   end

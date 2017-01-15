@@ -58,7 +58,7 @@
         %>
         <%=
         link "Añadir equipo",
-        to: tournament_participant_path(@conn, :teams_new, @tournament),
+        to: tournament_participant_path(@conn, :new, @tournament),
         class: 'btn btn-primary btn-sm'
         %>
       </div>

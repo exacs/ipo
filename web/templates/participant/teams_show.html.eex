@@ -27,14 +27,20 @@
         %>
         <%=
         link "Añadir jugador",
-        to: tournament_path(@conn, :new),
+        to: tournament_participant_playerr_path(@conn, :new, @tournament, @team),
         class: 'btn btn-primary'
         %>
       </div>
     </h3>
     <ul>
       <%= for player <- @team.players do %>
-        <li><%= player.name %> <%= link "Edit", to: team_player_path(@conn, :edit, @team, player) %></li>
+        <li>
+          <%= player.name %>
+          <%=
+          link "Edit",
+          to: tournament_participant_playerr_path(@conn, :edit, @tournament, @team, player)
+          %>
+        </li>
       <% end %>
     </ul>
   </section>

@@ -1,0 +1,11 @@
+<div class="container my-3">
+  <h1>Nuevo jugador</h1>
+
+  <%=
+  render "form_from_team.html",
+  changeset: @changeset,
+  action: tournament_participant_playerr_path(@conn, :create, @tournament, @team)
+  %>
+</div>
+
+<%= link "Back", to: team_path(@conn, :show, @team) %>
