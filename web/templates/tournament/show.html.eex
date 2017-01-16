@@ -16,6 +16,11 @@
 </div>
 
 <div class="container my-3">
+  <div>
+    <%= link to: tournament_path(@conn, :show, @tournament) do %>
+      <i class="material-icons">arrow back</i> <%= @tournament.name %>
+    <% end %>
+  </div>
   <h1 class="clearfix">
     <span><%= @tournament.name %></span>
     <div class="float-right">
@@ -23,11 +28,6 @@
       link "Editar",
       to: tournament_path(@conn, :edit, @tournament),
       class: 'btn btn-secondary'
-      %>
-      <%=
-      link "Crear torneo",
-      to: tournament_path(@conn, :new),
-      class: 'btn btn-primary'
       %>
     </div>
   </h1>
