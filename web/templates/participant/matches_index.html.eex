@@ -37,7 +37,7 @@
       </div>
     </h3>
     <table class="table">
-      <%= form_for @changeset, tournament_participant_path(@conn, :teams_index, @tournament), fn f -> %>
+      <%= form_for @changeset, tournament_participant_path(@conn, :index, @tournament), fn f -> %>
       <tbody>
         <%= for position <- @positions do %>
           <tr>
