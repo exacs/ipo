@@ -39,16 +39,34 @@
     <table class="table">
       <%= form_for @changeset, tournament_participant_path(@conn, :index, @tournament), fn f -> %>
       <tbody>
-        <%= for position <- @positions do %>
-          <tr>
-            <td>
-              <%= position %>
-            </td>
-            <td>
-              <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
-            </td>
-          </tr>
-        <% end %>
+        <tr>
+          <td>
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+            vs.
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+            vs.
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+            vs.
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+            vs.
+            <%= select f, :age, @participants |> Enum.map(&{&1.team.name, &1.id}) %>
+          </td>
+        </tr>
       </tbody>
     </table>
     <% end %>
