@@ -17,10 +17,10 @@ defmodule Ipo.TournamentController do
     changeset = Tournament.changeset(%Tournament{}, tournament_params)
 
     case Repo.insert(changeset) do
-      {:ok, _tournament} ->
+      {:ok, tournament} ->
         conn
         |> put_flash(:info, "Tournament created successfully.")
-        |> redirect(to: tournament_path(conn, :index))
+        |> redirect(to: tournament_path(conn, :show, tournament))
       {:error, changeset} ->
         render(conn, "new.html", changeset: changeset)
     end
