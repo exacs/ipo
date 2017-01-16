@@ -51,7 +51,7 @@
           <td>
             <%=
             button "Borrar",
-            to: tournament_path(@conn, :delete, @tournament),
+            to: tournament_path(@conn, :delete, tournament),
             method: :delete,
             data: [confirm: "Are you sure?"],
             class: "btn btn-danger btn-sm"
