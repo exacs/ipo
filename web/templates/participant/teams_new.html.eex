@@ -1,7 +1,7 @@
 <div class="container my-3">
   <div>
     <%= link to: tournament_path(@conn, :show, @tournament) do %>
-    <i class="material-icons">arrow back</i> <%= @tournament.name %>
+    <i class="material-icons">arrow_back</i> <%= @tournament.name %>
     <% end %>
   </div>
 
